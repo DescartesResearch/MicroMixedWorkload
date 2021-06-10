@@ -5,12 +5,14 @@ import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
+import static microbenchmark.PID.getPID;
+
 public class RunBenchmark {
 
-	public static void main(String[] args) throws RunnerException {
+	public static void main(String[] args) throws RunnerException, InterruptedException {
 
 		//TODO print procfs before
-
+		System.out.println(getPID());
 		Options opt = new OptionsBuilder()
 			.include(ImageBenchmark.class.getSimpleName())
 			.build();
@@ -19,5 +21,7 @@ public class RunBenchmark {
 
 		//TODO print procfs after
 	}
+
+
 
 }
