@@ -2,6 +2,11 @@ package microbenchmark;
 
 import com.sun.jna.platform.win32.Kernel32;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Path;
+
 public class PID {
 
 	/**
@@ -23,5 +28,18 @@ public class PID {
 		}
 		return pid;
 	}
+
+	public static void writePID(Path filePath, int pid) {
+		if (filePath == null) {
+			throw new IllegalArgumentException("Path to PID file is null.");
+		}
+		File f = filePath.toFile();
+		try (FileWriter writer = new FileWriter(f)) {
+			writer.write(Integer.toString(pid));
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
+	}
+
 
 }
