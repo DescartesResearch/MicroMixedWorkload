@@ -3,3 +3,4 @@ target/
 benchmarkImage.png
 benchmarkImage_small.png
 JMHImage.iml
+/pid.txt
