@@ -9,7 +9,7 @@ import static microbenchmark.PID.getPID;
 
 public class RunBenchmark {
 
-	public static void main(String[] args) throws RunnerException, InterruptedException {
+	public static void main(String[] args) {
 
 		//TODO print procfs before
 		System.out.println(getPID());
