@@ -68,12 +68,8 @@ public final class ImageReadWrite {
 		if (format == null || format.isEmpty()) {
 			format = STD_IMAGE_FORMAT;
 		}
-		File f = imagePath.toFile();
-		// Let the system overwrite the file for benchmarking.
-		//if (f.exists()) {
-		//	throw new IllegalArgumentException("Image file does already exist.");
-		//}
 
+		File f = imagePath.toFile();
 		ImageIO.write(image, format, f);
 	}
 }
