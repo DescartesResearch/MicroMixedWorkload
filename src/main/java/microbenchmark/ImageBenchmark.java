@@ -21,7 +21,7 @@ public class ImageBenchmark {
     @OutputTimeUnit(TimeUnit.SECONDS)
     @Fork(1)
     @Warmup(iterations = 0)
-    @Measurement(iterations = 5, time = 1)
+    @Measurement(iterations = 60, time = 10)
     public void measureThroughput() throws IOException {
         // use apm measurements, store in memory
         APM.start();

@@ -116,7 +116,7 @@ public class APM {
         return THREAD_LOCAL_PATHHANDLE.get();
     }
 
-    private static int getProcessId() {
+    public static int getProcessId() {
         if (Platform.isWindows()) {
             return Kernel32Library.INSTANCE.GetCurrentProcessId();
         } else if (Platform.isLinux()) {
