@@ -63,7 +63,7 @@ public class APM {
         return bytes;
     }
 
-    private static long[] getDiskBytesReadAndWritten() {
+    public static long[] getDiskBytesReadAndWritten() {
 
         if (Platform.isWindows()) {
             return new long[] {0, 0};

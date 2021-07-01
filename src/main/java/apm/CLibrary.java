@@ -15,4 +15,6 @@ public interface CLibrary extends Library {
     int getpid();
 
     int syscall(int syscall);
+
+    long sysconf(int name);
 }
