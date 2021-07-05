@@ -23,14 +23,14 @@ public class ImageBenchmark {
     @OutputTimeUnit(TimeUnit.SECONDS)
     @Fork(1)
     @Warmup(iterations = 0)
-    @Measurement(iterations = 5, time = 10)
+    @Measurement(iterations = 60, time = 10)
     public void measureThroughput() throws IOException {
         // use apm measurements, store in memory
         //APM.start();
-        //Proc.start();
+        Proc.start();
         iw.workOnImage(imageName);
         // use apm measurements
-        //Proc.stop();
+        Proc.stop();
         //APM.stop();
     }
 }

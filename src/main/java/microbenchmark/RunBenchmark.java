@@ -1,5 +1,6 @@
 package microbenchmark;
 
+import apm.APM;
 import apm.Proc;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
@@ -12,7 +13,8 @@ public class RunBenchmark {
 	public static void main(String[] args) throws RunnerException {
 
 		//TODO print procfs before
-		Proc.print();
+		//Proc.start();
+		//APM.start();
 
 		Options opt = new OptionsBuilder()
 			.include(ImageBenchmark.class.getSimpleName())
@@ -21,7 +23,8 @@ public class RunBenchmark {
 		new Runner(opt).run().stream().findFirst();
 
 		//TODO print procfs after
-		Proc.print();
+		//Proc.stop();
+		//APM.stop();
 	}
 
 

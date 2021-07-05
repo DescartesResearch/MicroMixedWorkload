@@ -69,6 +69,20 @@ public class Proc {
 		//return totalClockTicks;
 	}
 
+	public static long getCurrentThreadAllocatedBytes() {
+		long heap = 0;
+		try (Stream<String> memData = Files.lines(Paths.get("/proc/" + pid + "/task/" + tid + "/status"))) {
+			heap = memData.filter(line -> line.startsWith("VmSize"))
+				.map(line -> line.split(":"))
+				.map(entry -> entry[1].split(" "))
+				.mapToLong(entry -> Long.parseLong(entry[0].trim()) * 1024L)
+				.sum();
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
+		return heap;
+	}
+
 	/*
 	public static long getCurrentThreadAllocatedBytes() {
 		long heap = 0;
@@ -86,7 +100,7 @@ public class Proc {
 
 		return heap;
 	}
-	 */
+
 	public static long getCurrentThreadAllocatedBytes() {
 		long heap = 0;
 		try (Stream<String> memData = Files.lines(Paths.get("/proc/" + pid + "/task/" + tid + "/smaps"))) {
@@ -103,6 +117,7 @@ public class Proc {
 		}
 		return heap;
 	}
+	*/
 
 	public static long[] getDiskBytesReadAndWritten() {
 		// Uses proc anyways
@@ -121,10 +136,11 @@ public class Proc {
 
 	public static void stop() {
 		long cpu = getCurrentThreadCpuTime() - cpuStart;
-		long heap = getCurrentThreadAllocatedBytes();
-		if (heapStart < heap) {
-			heap -= heapStart;
-		}
+		long heap = getCurrentThreadAllocatedBytes() - heapStart;
+		//long heap = getCurrentThreadAllocatedBytes();
+		//if (heapStart < heap) {
+		//	heap -= heapStart;
+		//}
 		long[] bytes = getDiskBytesReadAndWritten();
 		long diskRead = bytes[0] - diskReadStart;
 		long diskWrite = bytes[1] - diskWriteStart;
