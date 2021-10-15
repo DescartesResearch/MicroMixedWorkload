@@ -68,22 +68,25 @@ public class Proc {
 		return Math.round(((double)totalClockTicks * 1e9) / (double)userHz);
 		//return totalClockTicks;
 	}
-
+	/*
+	// PROC MEMORY OPTION 1
 	public static long getCurrentThreadAllocatedBytes() {
 		long heap = 0;
 		try (Stream<String> memData = Files.lines(Paths.get("/proc/" + pid + "/task/" + tid + "/status"))) {
-			heap = memData.filter(line -> line.startsWith("VmSize"))
-				.map(line -> line.split(":"))
-				.map(entry -> entry[1].split(" "))
-				.mapToLong(entry -> Long.parseLong(entry[0].trim()) * 1024L)
-				.sum();
+		// try (Stream<String> memData = Files.lines(Paths.get("/proc/" + pid + "/status"))) {
+				heap = memData.filter(line -> line.startsWith("VmSize"))
+					.map(line -> line.split(":"))
+					.map(entry -> entry[1].split(" "))
+					.mapToLong(entry -> Long.parseLong(entry[0].trim()) * 1024L)
+					.sum();
 		} catch (IOException ioe) {
-			ioe.printStackTrace();
+				ioe.printStackTrace();
 		}
 		return heap;
 	}
 
-	/*
+	// PROC MEMORY OPTION 2
+
 	public static long getCurrentThreadAllocatedBytes() {
 		long heap = 0;
 		try (Stream<String> memData = Files.lines(Paths.get("/proc/" + pid + "/task/" + tid + "/maps"))) {
@@ -100,7 +103,8 @@ public class Proc {
 
 		return heap;
 	}
-
+	*/
+	// PROC MEMORY OPTION 3
 	public static long getCurrentThreadAllocatedBytes() {
 		long heap = 0;
 		try (Stream<String> memData = Files.lines(Paths.get("/proc/" + pid + "/task/" + tid + "/smaps"))) {
@@ -117,7 +121,7 @@ public class Proc {
 		}
 		return heap;
 	}
-	*/
+
 
 	public static long[] getDiskBytesReadAndWritten() {
 		// Uses proc anyways
@@ -136,7 +140,8 @@ public class Proc {
 
 	public static void stop() {
 		long cpu = getCurrentThreadCpuTime() - cpuStart;
-		long heap = getCurrentThreadAllocatedBytes() - heapStart;
+		long heap = getCurrentThreadAllocatedBytes();
+		//long heap = getCurrentThreadAllocatedBytes() - heapStart;
 		//long heap = getCurrentThreadAllocatedBytes();
 		//if (heapStart < heap) {
 		//	heap -= heapStart;
