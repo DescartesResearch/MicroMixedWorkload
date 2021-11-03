@@ -72,7 +72,7 @@ public class Proc {
 	// PROC MEMORY OPTION 1
 	public static long getCurrentThreadAllocatedBytes() {
 		long heap = 0;
-		try (Stream<String> memData = Files.lines(Paths.get("/proc/" + pid + "/task/" + tid + "/status"))) {
+		try (Stream<String> memData = Files.lines(Paths.get("/proc/" + pid + "/status"))) {
 		// try (Stream<String> memData = Files.lines(Paths.get("/proc/" + pid + "/status"))) {
 				heap = memData.filter(line -> line.startsWith("VmSize"))
 					.map(line -> line.split(":"))
