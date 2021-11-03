@@ -13,7 +13,7 @@ public class RunBenchmark {
 	public static void main(String[] args) throws RunnerException {
 
 		//TODO print procfs before
-		//Proc.start();
+		Proc.start();
 		//APM.start();
 
 		Options opt = new OptionsBuilder()
@@ -23,7 +23,7 @@ public class RunBenchmark {
 		new Runner(opt).run().stream().findFirst();
 
 		//TODO print procfs after
-		//Proc.stop();
+		Proc.stop();
 		//APM.stop();
 	}
 
