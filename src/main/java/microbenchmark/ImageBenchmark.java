@@ -26,11 +26,11 @@ public class ImageBenchmark {
     @Measurement(iterations = 60, time = 10)
     public void measureThroughput() throws IOException {
         // use apm measurements, store in memory
-        APM.start();
+        //APM.start();
         //Proc.start();
         iw.workOnImage(imageName);
         // use apm measurements
         //Proc.stop();
-        APM.stop();
+        //APM.stop();
     }
 }

@@ -68,7 +68,7 @@ public class Proc {
 		return Math.round(((double)totalClockTicks * 1e9) / (double)userHz);
 		//return totalClockTicks;
 	}
-	/*
+
 	// PROC MEMORY OPTION 1
 	public static long getCurrentThreadAllocatedBytes() {
 		long heap = 0;
@@ -86,7 +86,7 @@ public class Proc {
 	}
 
 	// PROC MEMORY OPTION 2
-
+	/*
 	public static long getCurrentThreadAllocatedBytes() {
 		long heap = 0;
 		try (Stream<String> memData = Files.lines(Paths.get("/proc/" + pid + "/task/" + tid + "/maps"))) {
@@ -105,6 +105,7 @@ public class Proc {
 	}
 	*/
 	// PROC MEMORY OPTION 3
+	/*
 	public static long getCurrentThreadAllocatedBytes() {
 		long heap = 0;
 		try (Stream<String> memData = Files.lines(Paths.get("/proc/" + pid + "/task/" + tid + "/smaps"))) {
@@ -121,6 +122,7 @@ public class Proc {
 		}
 		return heap;
 	}
+	*/
 
 
 	public static long[] getDiskBytesReadAndWritten() {

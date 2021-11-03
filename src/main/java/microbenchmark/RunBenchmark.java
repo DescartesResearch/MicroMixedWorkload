@@ -7,7 +7,7 @@ import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
-
+// Build command: mvn clean compile assembly:single
 public class RunBenchmark {
 
 	public static void main(String[] args) throws RunnerException {
